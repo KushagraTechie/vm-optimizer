@@ -100,3 +100,46 @@ result_opt = tk.Label(root, text="")
 result_opt.pack()
 
 root.mainloop()
+
+import tkinter as tk
+
+def run_simulation():
+    try:
+        pages = list(map(int, entry_pages.get().split(",")))
+        frames = int(entry_frames.get())
+
+        result_fifo.config(text="FIFO: " + str(fifo(pages, frames)))
+        result_lru.config(text="LRU: " + str(lru(pages, frames)))
+        result_opt.config(text="Optimal: " + str(optimal(pages, frames)))
+    except:
+        result_fifo.config(text="Invalid Input ❌")
+
+
+root = tk.Tk()
+root.title("Virtual Memory Optimizer")
+root.geometry("400x400")
+root.configure(bg="#1e1e2f")
+
+title = tk.Label(root, text="VM Optimizer", font=("Arial", 18, "bold"), bg="#1e1e2f", fg="white")
+title.pack(pady=10)
+
+tk.Label(root, text="Pages (e.g. 7,0,1,2)", bg="#1e1e2f", fg="white").pack()
+entry_pages = tk.Entry(root, width=30)
+entry_pages.pack(pady=5)
+
+tk.Label(root, text="Frames", bg="#1e1e2f", fg="white").pack()
+entry_frames = tk.Entry(root, width=10)
+entry_frames.pack(pady=5)
+
+tk.Button(root, text="Run Simulation", command=run_simulation, bg="#4CAF50", fg="white").pack(pady=15)
+
+result_fifo = tk.Label(root, text="", bg="#1e1e2f", fg="white", font=("Arial", 12))
+result_fifo.pack()
+
+result_lru = tk.Label(root, text="", bg="#1e1e2f", fg="white", font=("Arial", 12))
+result_lru.pack()
+
+result_opt = tk.Label(root, text="", bg="#1e1e2f", fg="white", font=("Arial", 12))
+result_opt.pack()
+
+root.mainloop()
