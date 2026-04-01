@@ -37,3 +37,31 @@ def lru(pages, frames):
 
     return page_faults
 print("LRU Page Faults:", lru(pages, frames))
+
+def optimal(pages, frames):
+    memory = []
+    page_faults = 0
+
+    for i in range(len(pages)):
+        if pages[i] not in memory:
+            if len(memory) < frames:
+                memory.append(pages[i])
+            else:
+                future = pages[i+1:]
+                replace_index = -1
+                farthest = -1
+
+                for j in range(len(memory)):
+                    if memory[j] not in future:
+                        replace_index = j
+                        break
+                    else:
+                        idx = future.index(memory[j])
+                        if idx > farthest:
+                            farthest = idx
+                            replace_index = j
+
+                memory[replace_index] = pages[i]
+            page_faults += 1
+
+    return page_faults
