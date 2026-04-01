@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 def fifo(pages, frames):
     memory = []
     page_faults = 0
@@ -143,3 +144,29 @@ result_opt = tk.Label(root, text="", bg="#1e1e2f", fg="white", font=("Arial", 12
 result_opt.pack()
 
 root.mainloop()
+
+def run_simulation():
+    try:
+        pages = list(map(int, entry_pages.get().split(",")))
+        frames = int(entry_frames.get())
+
+        fifo_faults = fifo(pages, frames)
+        lru_faults = lru(pages, frames)
+        opt_faults = optimal(pages, frames)
+
+        result_fifo.config(text="FIFO: " + str(fifo_faults))
+        result_lru.config(text="LRU: " + str(lru_faults))
+        result_opt.config(text="Optimal: " + str(opt_faults))
+
+        # 📊 Graph
+        algorithms = ["FIFO", "LRU", "Optimal"]
+        faults = [fifo_faults, lru_faults, opt_faults]
+
+        plt.bar(algorithms, faults)
+        plt.title("Page Fault Comparison")
+        plt.xlabel("Algorithms")
+        plt.ylabel("Page Faults")
+        plt.show()
+
+    except:
+        result_fifo.config(text="Invalid Input ❌")
