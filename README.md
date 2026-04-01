@@ -1,14 +1,8 @@
-<!-- # Virtual Memory Optimizer
-
-## Features
-- FIFO, LRU, Optimal algorithms
-- GUI interface
-- Easy input
-
-## How to Run
-python main.py -->
 # Virtual Memory Optimizer
+## 🔗 Live Demo
+👉 [Click here to use the Web App](https://cross-platform-works--kushagrabajpai8.replit.app/)
 
+---
 ## Description
 This project simulates different page replacement algorithms used in Operating Systems.
 
